@@ -2,8 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const formData = require('form-data');
 const Mailgun = require('mailgun.js');
+const formData = require('form-data');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
@@ -30,16 +30,16 @@ app.post('/signup', function(req, res) {
 
 function sendWelcomeEmail(firstname, lastname, email, callback) {
     const mailgun = new Mailgun(formData);
-    const mg = mailgun.client({username: 'api', key: '9ccb038633f657318fce1915a48b6e25-5dcb5e36-535f6f97'});
+    const mg = mailgun.client({username: 'api', key: '3a9abdfb38b2a8466e55a3596be4cc3a'});
 
     const data = {
-        from: 'Your Name <your-email@your-domain.com>',
+        from: 'Akaljot4756.be23@chitkara.edu.in',
         to: email,
         subject: 'Welcome to Deakin Newsletter',
         text: `Hi ${firstname} ${lastname},\n\nThank you for signing up for the Deakin Newsletter! We're excited to have you with us.\n\nBest regards,\nDeakin Team`,
     };
 
-    mg.messages.create('your-domain.com', data)
+    mg.messages.create('sandbox7474172587b743a3a718d827af45baf6.mailgun.org', data)
         .then(body => callback(null, body))
         .catch(error => callback(error, null));
 }
